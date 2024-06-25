@@ -26,15 +26,15 @@ For each rule, we will:
 - **Rule**: Detect multiple failed login attempts within a short time frame.
 - **Condition**: More than 5 failed login attempts from the same IP within 10 minutes.
 - **Trigger**: Monitor authentication logs for `event.type:authentication_failure`.
-- **Detection**:
-'''json Rule Name: Excessive Login Failures
+- **Detection**: 
+```yaml
+Rule Name: Excessive Login Failures
 Conditions:
   - When count() of event.type:authentication_failure from the same source.ip
     is greater than 5 in the last 10 minutes
 Actions:
   - Alert
-
-  
+```
 
 ### 2. Unusual Network Traffic
 - **Rule**: Identify sudden spikes in network traffic to unusual destinations.
