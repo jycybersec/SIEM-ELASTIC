@@ -28,12 +28,23 @@ For each rule, we will:
 - **Trigger**: Monitor authentication logs for `event.type:authentication_failure`.
 - **Detection**: 
 ```yaml
-Rule Name: Excessive Login Failures
-Conditions:
-  - When count() of event.type:authentication_failure from the same source.ip
-    is greater than 5 in the last 10 minutes
-Actions:
-  - Alert
+- id: excessive_login_failures
+  name: Excessive Login Failures
+  type: threshold
+  index: ["logs-*", "filebeat-*", "packetbeat-*"]
+  language: kuery
+  query: "event.type:authentication_failure"
+  threshold:
+    field: "source.ip"
+    value: 5
+  timeframe: "last 10m"
+  risk_score: 21
+  severity: medium
+  actions:
+    - alert:
+        summary: "Multiple failed login attempts detected"
+        description: "More than 5 failed login attempts from the same IP within 10 minutes."
+
 ```
 
 ### 2. Unusual Network Traffic
@@ -42,13 +53,25 @@ Actions:
 - **Trigger**: Use network flow data and analyze against historical baselines with `network.direction:outbound`.
 - **Detection**:
 ```yaml
-Rule Name: Unusual Network Traffic
-Conditions:
-  - When there is an increase of 50% or more in network.event.duration
-    for network.direction:outbound to a rare external.ip
-    that was not seen in the last 30 days
-Actions:
-  - Alert
+- rule_id: unusual_network_traffic
+  name: Unusual Network Traffic
+  type: query
+  index: ["logs-*", "filebeat-*", "packetbeat-*"]
+  language: kuery
+  query: "network.direction:outbound and not network.ip:internal"
+  threshold:
+    field: "destination.ip"
+    value: 1
+    cardinality:
+      - field: "source.ip"
+        value: "50%"
+  timeframe: "last 30d"
+  risk_score: 70
+  severity: high
+  actions:
+    - alert:
+        summary: "Unusual outbound network traffic detected"
+        description: "Increase of 50% or more in outbound traffic to a rare external IP not seen in the last 30 days."
 ```
 
 ### 3. Suspicious File Execution
@@ -57,12 +80,18 @@ Actions:
 - **Trigger**: Look for process execution logs with `event.action:process_start` and `file.path:/tmp/*`.
 - **Detection**:
 ```yaml
-Rule Name: Suspicious File Execution
-Conditions:
-  - When any process.start event where process.executable
-    is under /tmp/* or other uncommon directories
-Actions:
-  - Alert
+- rule_id: suspicious_file_execution
+  name: Suspicious File Execution
+  type: query
+  index: ["logs-*", "filebeat-*", "packetbeat-*"]
+  language: kuery
+  query: "event.action:process_start and file.path:(/tmp/* or /dev/shm/*)"
+  risk_score: 50
+  severity: medium
+  actions:
+    - alert:
+        summary: "Suspicious file execution detected"
+        description: "Process started from /tmp or other uncommon directories."
 ```
 
 
@@ -72,12 +101,18 @@ Actions:
 - **Trigger**: Correlate user access logs with `event.category:user_access` and behavioral analytics.
 - **Detection**:
 ```yaml
-Rule Name: Anomalous User Behavior
-Conditions:
-  - When a user.account.name accesses more than 3 servers or databases
-    that were not accessed in the last 60 days
-Actions:
-  - Alert
+- rule_id: anomalous_user_behavior
+  name: Anomalous User Behavior
+  type: query
+  index: ["logs-*", "filebeat-*", "packetbeat-*"]
+  language: kuery
+  query: "event.category:user_access and not user.account.name:known_good"
+  risk_score: 60
+  severity: medium
+  actions:
+    - alert:
+        summary: "Anomalous user behavior detected"
+        description: "User account accessed more than 3 servers or databases not accessed in the last 60 days."
 ```
 
 
@@ -87,12 +122,18 @@ Actions:
 - **Trigger**: Monitor data transfer logs for `event.type:data_transfer` and `destination.domain:!*company_whitelist*`.
 - **Detection**:
 ```yaml
-Rule Name: Data Exfiltration Attempts
-Conditions:
-  - When any network.bytes > 500MB and destination.ip is not in
-    company_whitelist during a data transfer event
-Actions:
-  - Alert
+- rule_id: data_exfiltration_attempts
+  name: Data Exfiltration Attempts
+  type: query
+  index: ["logs-*", "filebeat-*", "packetbeat-*"]
+  language: kuery
+  query: "event.type:data_transfer and destination.bytes > 500000000 and not destination.ip:internal"
+  risk_score: 80
+  severity: high
+  actions:
+    - alert:
+        summary: "Potential data exfiltration attempt detected"
+        description: "Data transfer over 500MB to an external domain not on the corporate whitelist."
 ```
 
 
