@@ -41,13 +41,29 @@ Actions:
 - **Condition**: An increase of 50% in outbound traffic to a rare external IP address not seen in the last 30 days.
 - **Trigger**: Use network flow data and analyze against historical baselines with `network.direction:outbound`.
 - **Detection**:
-  
+```yaml
+Rule Name: Unusual Network Traffic
+Conditions:
+  - When there is an increase of 50% or more in network.event.duration
+    for network.direction:outbound to a rare external.ip
+    that was not seen in the last 30 days
+Actions:
+  - Alert
+```
 
 ### 3. Suspicious File Execution
 - **Rule**: Alert on execution of files from uncommon directories.
 - **Condition**: Any `process.start` event where the file path is outside of standard directories.
 - **Trigger**: Look for process execution logs with `event.action:process_start` and `file.path:/tmp/*`.
 - **Detection**:
+```yaml
+Rule Name: Suspicious File Execution
+Conditions:
+  - When any process.start event where process.executable
+    is under /tmp/* or other uncommon directories
+Actions:
+  - Alert
+```
 
 
 ### 4. Anomalous User Behavior
@@ -55,6 +71,14 @@ Actions:
 - **Condition**: User account accessing more than 3 servers or databases not accessed in the last 60 days.
 - **Trigger**: Correlate user access logs with `event.category:user_access` and behavioral analytics.
 - **Detection**:
+```yaml
+Rule Name: Anomalous User Behavior
+Conditions:
+  - When a user.account.name accesses more than 3 servers or databases
+    that were not accessed in the last 60 days
+Actions:
+  - Alert
+```
 
 
 ### 5. Data Exfiltration Attempts
@@ -62,6 +86,14 @@ Actions:
 - **Condition**: Any data transfer over 500 MB to an external domain not on the corporate whitelist.
 - **Trigger**: Monitor data transfer logs for `event.type:data_transfer` and `destination.domain:!*company_whitelist*`.
 - **Detection**:
+```yaml
+Rule Name: Data Exfiltration Attempts
+Conditions:
+  - When any network.bytes > 500MB and destination.ip is not in
+    company_whitelist during a data transfer event
+Actions:
+  - Alert
+```
 
 
 ## Attack Simulation
