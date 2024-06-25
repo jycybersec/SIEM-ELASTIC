@@ -1,15 +1,21 @@
-# Elastic SIEM Walkthrough
+# Elastic SIEM Implementation
 
-## Step 1: Navigate to the Detections Tab
+## Agent Deployment 
+- An agent will be deployed on each intended machine.
+- #1 Kali Purple
+- #2 Kali OffSec
+- #3 Metasploitable Linux
+- #4 Metasploitable Windows 2008
+- #5 Windows XP
+
+## Manage Detection Rules
 - Open the Elastic SIEM app.
 - Click on the **Detections** tab.
-
-## Step 2: Manage Detection Rules
 - Select **Manage detection rules**.
 - Choose to **create new rules** or **import** them if you have the JSON rule definitions.
 
-## Step 3: Define Rule Details
-For each rule, you will need to:
+## Define Rule Details
+For each rule, we will:
 - Define the **index patterns** to search.
 - Specify the **query** to match the suspicious activity.
 - Apply any **additional filters** or **machine learning jobs** to refine the detection.
@@ -41,28 +47,36 @@ For each rule, you will need to:
 - **Condition**: Any data transfer over 500 MB to an external domain not on the corporate whitelist.
 - **Trigger**: Monitor data transfer logs for `event.type:data_transfer` and `destination.domain:!*company_whitelist*`.
 
-## Step 4: Test and Adjust Rules
-- Test your rules to ensure they are triggering as expected.
-- Adjust them to minimize false positives.
-
-## Simulate Attack and Implement Mitigation Strategies
+## Attack Simulation
 
 ### 1. Excessive Login Failures
 - **Technique**: Brute force attack with various username and password combinations.
-- **Mitigation**: Implement account lockout policies and monitor for repeated authentication failures.
 
 ### 2. Unusual Network Traffic
 - **Technique**: Data exfiltration over a different protocol or port to avoid detection.
-- **Mitigation**: Employ network segmentation and egress filtering, and monitor for unusual traffic patterns.
 
 ### 3. Suspicious File Execution
 - **Technique**: Execution of malware payload from a temporary directory or user profile.
-- **Mitigation**: Restrict execution from non-standard directories and monitor process creation events.
 
 ### 4. Anomalous User Behavior
 - **Technique**: Use of stolen credentials to access systems and data outside of normal behavior patterns.
-- **Mitigation**: Implement least privilege access controls and user behavior analytics.
 
 ### 5. Data Exfiltration Attempts
 - **Technique**: Compression and encryption of sensitive data before exfiltration.
+
+## Mitigation Strategies
+
+### 1. Excessive Login Failures
+- **Mitigation**: Implement account lockout policies and monitor for repeated authentication failures.
+
+### 2. Unusual Network Traffic
+- **Mitigation**: Employ network segmentation and egress filtering, and monitor for unusual traffic patterns.
+
+### 3. Suspicious File Execution
+- **Mitigation**: Restrict execution from non-standard directories and monitor process creation events.
+
+### 4. Anomalous User Behavior
+- **Mitigation**: Implement least privilege access controls and user behavior analytics.
+
+### 5. Data Exfiltration Attempts
 - **Mitigation**: Monitor for large outbound transfers and any use of compression or encryption tools not typically used.
