@@ -1,7 +1,7 @@
 # Elastic SIEM Implementation
 
 ## Agent Deployment 
-- An agent will be deployed on each intended machine.
+An agent will be deployed on each intended machine.
 - #1 Kali Purple
 - #2 Kali OffSec
 - #3 Metasploitable Linux
