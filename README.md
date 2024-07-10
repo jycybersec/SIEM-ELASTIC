@@ -1,4 +1,4 @@
-# Elastic SIEM Implementation
+# Elastic SIEM Simulation
 
 ## Agent Deployment 
 An agent will be deployed on each intended machine.
