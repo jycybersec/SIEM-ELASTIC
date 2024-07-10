@@ -28,22 +28,29 @@ For each rule, we will:
 - **Trigger**: Monitor authentication logs for `event.type:authentication_failure`.
 - **Detection**: 
 ```yaml
-- id: excessive_login_failures
-  name: Excessive Login Failures
-  type: threshold
-  index: ["logs-*", "filebeat-*", "packetbeat-*"]
-  language: kuery
-  query: "event.type:authentication_failure"
-  threshold:
-    field: "source.ip"
-    value: 5
-  timeframe: "last 10m"
-  risk_score: 21
-  severity: medium
-  actions:
-    - alert:
-        summary: "Multiple failed login attempts detected"
-        description: "More than 5 failed login attempts from the same IP within 10 minutes."
+{
+  "id": "excessive_login_failures",
+  "name": "Excessive Login Failures",
+  "type": "threshold",
+  "index": ["logs-*", "filebeat-*", "packetbeat-*"],
+  "language": "kuery",
+  "query": "event.type:authentication_failure",
+  "threshold": {
+    "field": "source.ip",
+    "value": 5
+  },
+  "timeframe": "last 10m",
+  "risk_score": 21,
+  "severity": "medium",
+  "actions": [
+    {
+      "alert": {
+        "summary": "Multiple failed login attempts detected",
+        "description": "More than 5 failed login attempts from the same IP within 10 minutes."
+      }
+    }
+  ]
+}
 
 ```
 
