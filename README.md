@@ -3,10 +3,14 @@
 ## Agent Deployment 
 An agent will be deployed on each intended machine.
 - #1 Kali Purple
+  ![image](https://github.com/user-attachments/assets/6d691106-619d-4a1d-8a8e-0d2ff4d49c5e)
 - #2 Kali OffSec
-- #3 Metasploitable Linux
-- #4 Metasploitable Windows 2008
-- #5 Windows XP
+  ![image](https://github.com/user-attachments/assets/107a6332-a6a2-4735-985a-34f005240e95)
+- #3 Windows 10
+  ![image](https://github.com/user-attachments/assets/cf7d853c-df92-428d-9641-345a91803f52)
+- #4 Windows 11 x64
+  ![image](https://github.com/user-attachments/assets/0996a2c8-0698-4f00-8735-3a2fe3cd525e)
+
 
 ## Manage Detection Rules
 - Open the Elastic SIEM app.
@@ -117,34 +121,7 @@ For each rule, we will:
 ```
 
 
-### 4. Anomalous User Behavior
-- **Rule**: Detect when a user accesses resources atypical to their normal behavior.
-- **Condition**: User account accessing more than 3 servers or databases not accessed in the last 60 days.
-- **Trigger**: Correlate user access logs with `event.category:user_access` and behavioral analytics.
-- **Detection**:
-```JSON
-{
-  "rule_id": "anomalous_user_behavior",
-  "name": "Anomalous User Behavior",
-  "type": "query",
-  "index": ["logs-*", "filebeat-*", "packetbeat-*"],
-  "language": "kuery",
-  "query": "event.category:user_access and not user.account.name:known_good",
-  "risk_score": 60,
-  "severity": "medium",
-  "actions": [
-    {
-      "alert": {
-        "summary": "Anomalous user behavior detected",
-        "description": "User account accessed more than 3 servers or databases not accessed in the last 60 days."
-      }
-    }
-  ]
-}
-```
-
-
-### 5. Data Exfiltration Attempts
+### 4. Data Exfiltration Attempts
 - **Rule**: Spot large data transfers to external destinations.
 - **Condition**: Any data transfer over 500 MB to an external domain not on the corporate whitelist.
 - **Trigger**: Monitor data transfer logs for `event.type:data_transfer` and `destination.domain:!*company_whitelist*`.
@@ -182,10 +159,7 @@ For each rule, we will:
 ### 3. Suspicious File Execution
 - **Technique**: Execution of malware payload from a temporary directory or user profile.
 
-### 4. Anomalous User Behavior
-- **Technique**: Use of stolen credentials to access systems and data outside of normal behavior patterns.
-
-### 5. Data Exfiltration Attempts
+### . Data Exfiltration Attempts
 - **Technique**: Compression and encryption of sensitive data before exfiltration.
 
 ## Mitigation Strategies
@@ -199,8 +173,5 @@ For each rule, we will:
 ### 3. Suspicious File Execution
 - **Mitigation**: Restrict execution from non-standard directories and monitor process creation events.
 
-### 4. Anomalous User Behavior
-- **Mitigation**: Implement least privilege access controls and user behavior analytics.
-
-### 5. Data Exfiltration Attempts
+### 4. Data Exfiltration Attempts
 - **Mitigation**: Monitor for large outbound transfers and any use of compression or encryption tools not typically used.
