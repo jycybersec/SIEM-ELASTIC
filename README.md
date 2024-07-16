@@ -109,7 +109,20 @@ For each rule, we will:
 - **Trigger**: Look for process execution logs with `event.action:process_start` and `file.path:/tmp/*`.
 - **Detection Rule**:
 ```JSON
-{"rule_id":"suspicious_file_execution","name":"Suspicious File Execution","description":"Detects process start events from suspicious file paths.","type":"query","index":["logs-*","filebeat-*","packetbeat-*"],"language":"kuery","query":"event.action:process_start and file.path:(/tmp/* or /dev/shm/*)","risk_score":50,"severity":"medium","actions":[{"group":"default","id":"elastic-cloud-email","action_type_id":".email","params":{"to":["jycybersec@gmail.com"],"subject":"Suspicious file execution detected","message":"A process was started from /tmp or /dev/shm which is uncommon and could be suspicious."}}]}
+{"rule_id":"suspicious_file_execution",
+"name":"Suspicious File Execution",
+"description":"Detects process start events from suspicious file paths.",
+"type":"query",
+"index":["logs-*","filebeat-*","packetbeat-*"],
+"language":"kuery",
+"query":"event.action:process_start and file.path:(/tmp/* or /dev/shm/*)",
+"risk_score":50,
+"severity":"medium",
+"actions":[{"group":"default","id":"elastic-cloud-email",
+"action_type_id":".email",
+"params":{"to":["jycybersec@gmail.com"],
+"subject":"Suspicious file execution detected",
+"message":"A process was started from /tmp or /dev/shm which is uncommon and could be suspicious."}}]}
 ```
 ![image](https://github.com/user-attachments/assets/84d68b5f-4aa3-4778-9116-6b06f5c676f9)
 
@@ -121,7 +134,21 @@ For each rule, we will:
 - **Trigger**: Monitor data transfer logs for `event.type:data_transfer and destination.bytes > 500000000` and `destination.ip:192.168.0.0/16 or destination.ip:10.0.0.0/8`.
 - **Detection Rule**:
 ```JSON
-{"rule_id": "data_exfiltration_attempts", "name": "Data Exfiltration Attempts", "description": "Detects data transfer over 500MB to an external domain not on the internal network.","type": "query", "index": ["logs-*", "filebeat-*", "packetbeat-*"], "language": "kuery", "query": "event.type:data_transfer and destination.bytes > 500000000 and not (destination.ip:192.168.0.0/16 or destination.ip:10.0.0.0/8)", "risk_score": 80, "severity": "high", "actions": [{"action_type_id": ".email", "group": "default", "id": "elastic-cloud-email", "params": {"to": ["jycybersec@gmail.com"], "subject": "Potential data exfiltration attempt detected", "message": "Data transfer over 500MB to an external domain not on the internal network."}}]}
+{"rule_id": "data_exfiltration_attempts",
+"name": "Data Exfiltration Attempts",
+"description": "Detects data transfer over 500MB to an external domain not on the internal network.",
+"type": "query", 
+"index": ["logs-*", "filebeat-*", "packetbeat-*"], 
+"language": "kuery",
+"query": "event.type:data_transfer and destination.bytes > 500000000 and not (destination.ip:192.168.0.0/16 or destination.ip:10.0.0.0/8)",
+"risk_score": 80,
+"severity":"high",
+"actions": [{"action_type_id": ".email",
+"group": "default",
+"id": "elastic-cloud-email",
+"params": {"to": ["jycybersec@gmail.com"],
+"subject": "Potential data exfiltration attempt detected",
+"message": "Data transfer over 500MB to an external domain not on the internal network."}}]}
 ```
 ![image](https://github.com/user-attachments/assets/0ba9765b-f037-4ff6-8b45-3a40a54a4322)
 
