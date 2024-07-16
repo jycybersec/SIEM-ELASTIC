@@ -23,7 +23,7 @@ An agent will be deployed on each intended machine.
 For each rule, we will:
 
   - Define the **index patterns** to search:
-    - We use index patterns such as `logs-*`, `filebeat-*`, and `packetbeat-*` to ensure comprehensive coverage of relevant logs and data sources.
+    - We'll use index patterns such as `logs-*`, `filebeat-*`, and `packetbeat-*` to ensure comprehensive coverage of relevant logs and data sources.
 
   - Specify the **query** to match the suspicious activity:
     - For **Excessive Login Failures**, the query is `event.type:authentication_failure` to detect failed login attempts.
@@ -34,7 +34,9 @@ For each rule, we will:
     - For **Excessive Login Failures**, we set a threshold of more than 5 failed login attempts from the same IP within 10 minutes.
     - For **Unusual Network Traffic**, we set a threshold to detect a 50% increase in outbound traffic to rare external IPs not seen in the last 30 days.
     - For **Suspicious File Execution**, we monitor for process starts from specific uncommon directories like `/tmp` and `/dev/shm`.
-
+      
+  - Define actions to take when the rule is triggered:
+    - For each rule, we send an email notification to `jycybersec@gmail.com` to alert of possible malicous activity.
 
 ## Detection Rules Setup
 
