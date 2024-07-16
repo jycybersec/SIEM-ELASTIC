@@ -46,7 +46,24 @@ For each rule, we will:
 - **Trigger**: Monitor authentication logs for `event.type:authentication_failure`.
 - **Detection Rule**: 
 ```JSON
-{"rule_id":"excessive_login_failures","name":"Excessive Login Failures","description":"Detects multiple failed login attempts from the same IP within 10 minutes.","risk_score":21,"severity":"medium","type":"threshold","index":["logs-*","filebeat-*","packetbeat-*"],"language":"kuery","query":"event.type:authentication_failure","threshold":{"field":["source.ip"],"value":5,"interval":"10m","from":"now-10m","actions":[{"group":"default","id":"elastic-cloud-email","action_type_id":".email","params":{"to":["jycybersec@gmail.com"],"subject":"Multiple failed login attempts detected","message":"More than 5 failed login attempts from the same IP within 10 minutes."}}]}
+{"rule_id":"excessive_login_failures",
+"name":"Excessive Login Failures",
+"description":"Detects multiple failed login attempts from the same IP within 10 minutes.",
+"risk_score":21,
+"severity":"medium",
+"type":"threshold",
+"index":["logs-*","filebeat-*","packetbeat-*"],
+"language":"kuery",
+"query":"event.type:authentication_failure",
+"threshold":{"field":["source.ip"],"value":5,
+"interval":"10m",
+"from":"now-10m",
+"actions":[{"group":"default",
+"id":"elastic-cloud-email",
+"action_type_id":".email",
+"params":{"to":["jycybersec@gmail.com"],
+"subject":"Multiple failed login attempts detected",
+"message":"More than 5 failed login attempts from the same IP within 10 minutes."}}]}
 ```
 ### Manual Setup
 ![image](https://github.com/user-attachments/assets/31a7bd23-1b94-4614-8ce3-2bcd2d583e32)
