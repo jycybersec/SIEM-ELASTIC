@@ -34,6 +34,13 @@ For each rule, we will:
 ```JSON
 {"rule_id":"excessive_login_failures","name":"Excessive Login Failures","description":"Detects multiple failed login attempts from the same IP within 10 minutes.","risk_score":21,"severity":"medium","type":"threshold","index":["logs-*","filebeat-*","packetbeat-*"],"language":"kuery","query":"event.type:authentication_failure","threshold":{"field":["source.ip"],"value":5,"interval":"10m","from":"now-10m","actions":[{"group":"default","id":"elastic-cloud-email","action_type_id":".email","params":{"to":["jycybersec@gmail.com"],"subject":"Multiple failed login attempts detected","message":"More than 5 failed login attempts from the same IP within 10 minutes."}}]}
 ```
+### Manual Setup
+![image](https://github.com/user-attachments/assets/31a7bd23-1b94-4614-8ce3-2bcd2d583e32)
+
+![image](https://github.com/user-attachments/assets/572976b4-5e63-42ab-aa5f-87c011c32f4f)
+
+![image](https://github.com/user-attachments/assets/ae1d4b0f-e750-4386-b124-f9ba95186d41)
+
 
 ### 2. Unusual Network Traffic
 - **Rule**: Identify sudden spikes in network traffic to unusual destinations.
@@ -60,7 +67,7 @@ For each rule, we will:
 - **Trigger**: Monitor data transfer logs for `event.type:data_transfer and destination.bytes > 500000000` and `destination.ip:192.168.0.0/16 or destination.ip:10.0.0.0/8`.
 - **Detection Rule**:
 ```JSON
-{"rule_id": "data_exfiltration_attempts", "name": "Data Exfiltration Attempts", "description": "Detects data transfer over 500MB to an external domain not on the internal network.","type": "query", "index": ["logs-*", "filebeat-*", "packetbeat-*"], "language": "kuery", "query": "event.type:data_transfer and destination.bytes > 500000000 and not (destination.ip:192.168.0.0/16 or destination.ip:10.0.0.0/8)", "risk_score": 80, "severity": "high", "actions": [{"action_type_id": ".email", "group": "default", "id": "c098b256-21c3-4936-b26d-82244a977c76", "params": {"to": ["jycybersec@gmail.com"], "subject": "Potential data exfiltration attempt detected", "message": "Data transfer over 500MB to an external domain not on the corporate whitelist."}}]}
+{"rule_id": "data_exfiltration_attempts", "name": "Data Exfiltration Attempts", "description": "Detects data transfer over 500MB to an external domain not on the internal network.","type": "query", "index": ["logs-*", "filebeat-*", "packetbeat-*"], "language": "kuery", "query": "event.type:data_transfer and destination.bytes > 500000000 and not (destination.ip:192.168.0.0/16 or destination.ip:10.0.0.0/8)", "risk_score": 80, "severity": "high", "actions": [{"action_type_id": ".email", "group": "default", "id": "elastic-cloud-email", "params": {"to": ["jycybersec@gmail.com"], "subject": "Potential data exfiltration attempt detected", "message": "Data transfer over 500MB to an external domain not on the internal network."}}]}
 ```
 
 
