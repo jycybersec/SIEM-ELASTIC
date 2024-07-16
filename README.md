@@ -2,16 +2,17 @@
 
 ## Agent Deployment 
 An agent will be deployed on each intended machine.
-- #1 Kali Purple
+- #1 Kali Purple "purplesec"
   ![image](https://github.com/user-attachments/assets/6d691106-619d-4a1d-8a8e-0d2ff4d49c5e)
-- #2 Kali OffSec
+- #2 Kali OffSec "jycybersec"
   ![image](https://github.com/user-attachments/assets/107a6332-a6a2-4735-985a-34f005240e95)
-- #3 Windows 10
+- #3 Windows 10 "windows10"
   ![image](https://github.com/user-attachments/assets/cf7d853c-df92-428d-9641-345a91803f52)
-- #4 Windows 11 x64
+- #4 Windows 11 x64 "windows11"
   ![image](https://github.com/user-attachments/assets/0996a2c8-0698-4f00-8735-3a2fe3cd525e)
-Agent "Fleet"
-  ![image](https://github.com/user-attachments/assets/ae614779-5bb8-49f9-934b-82556680b783)
+- Agent Fleet
+  ![image](https://github.com/user-attachments/assets/00c6ce90-e0e0-491b-bf13-4e92e77c113e)
+
 
 ## Manage Detection Rules
 - Open the Elastic SIEM app.
