@@ -79,7 +79,25 @@ For each rule, we will:
 - **Trigger**: Use network flow data and analyze against historical baselines with `network.direction:outbound`.
 - **Detection Rule**:
 ```JSON
-{"rule_id":"unusual_network_traffic","name":"Unusual Network Traffic","description":"Detects unusual outbound network traffic with a significant increase.","type":"query","index":["logs-*","filebeat-*","packetbeat-*"],"language":"kuery","query":"network.direction:outbound and not network.ip:internal","threshold.field":"destination.ip","threshold.value":1,"threshold.cardinality":[{"field":"source.ip","value":"50%"}],"timeframe":"last 30d","risk_score":70,"severity":"high","actions":[{"group":"default","id":"elastic-cloud-email","action_type_id":".email","params":{"to":["jycybersec@gmail.com"],"subject":"Unusual outbound network traffic detected","message":"Increase of 50% or more in outbound traffic to a rare external IP not seen in the last 30 days."}}]}
+{"rule_id":"unusual_network_traffic",
+"name":"Unusual Network Traffic",
+"description":"Detects unusual outbound network traffic with a significant increase.",
+"type":"query",
+"index":["logs-*","filebeat-*","packetbeat-*"],
+"language":"kuery",
+"query":"network.direction:outbound and not network.ip:internal",
+"threshold.field":"destination.ip",
+"threshold.value":1,
+"threshold.cardinality":[{"field":"source.ip","value":"50%"}],
+"timeframe":"last 30d",
+"risk_score":70,
+"severity":"high",
+"actions":[{"group":"default",
+"id":"elastic-cloud-email",
+"action_type_id":".email",
+"params":{"to":["jycybersec@gmail.com"],
+"subject":"Unusual outbound network traffic detected",
+"message":"Increase of 50% or more in outbound traffic to a rare external IP not seen in the last 30 days."}}]}
 ```
 ![image](https://github.com/user-attachments/assets/09ed91ba-5447-441d-a235-35ad1bad59da)
 
