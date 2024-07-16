@@ -1,7 +1,6 @@
 # ELK (Elasticsearch, Logstash, and Kibana) SIEM Implementation
 
 ## Agent Deployment 
-An agent will be deployed on each intended machine.
 - #1 Kali Purple "purplesec"
   ![image](https://github.com/user-attachments/assets/6d691106-619d-4a1d-8a8e-0d2ff4d49c5e)
 - #2 Kali OffSec "jycybersec"
