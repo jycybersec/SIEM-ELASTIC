@@ -10,7 +10,8 @@ An agent will be deployed on each intended machine.
   ![image](https://github.com/user-attachments/assets/cf7d853c-df92-428d-9641-345a91803f52)
 - #4 Windows 11 x64
   ![image](https://github.com/user-attachments/assets/0996a2c8-0698-4f00-8735-3a2fe3cd525e)
-
+Agent "Fleet"
+  ![image](https://github.com/user-attachments/assets/ae614779-5bb8-49f9-934b-82556680b783)
 
 ## Manage Detection Rules
 - Open the Elastic SIEM app.
