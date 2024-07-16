@@ -50,24 +50,7 @@ For each rule, we will:
 - **Trigger**: Look for process execution logs with `event.action:process_start` and `file.path:/tmp/*`.
 - **Detection Rule**:
 ```JSON
-{
-  "rule_id": "suspicious_file_execution",
-  "name": "Suspicious File Execution",
-  "type": "query",
-  "index": ["logs-*", "filebeat-*", "packetbeat-*"],
-  "language": "kuery",
-  "query": "event.action:process_start and file.path:(/tmp/* or /dev/shm/*)",
-  "risk_score": 50,
-  "severity": "medium",
-  "actions": [
-    {
-      "alert": {
-        "summary": "Suspicious file execution detected",
-        "description": "Process started from /tmp or other uncommon directories."
-      }
-    }
-  ]
-}
+{"rule_id":"suspicious_file_execution","name":"Suspicious File Execution","description":"Detects process start events from suspicious file paths.","type":"query","index":["logs-*","filebeat-*","packetbeat-*"],"language":"kuery","query":"event.action:process_start and file.path:(/tmp/* or /dev/shm/*)","risk_score":50,"severity":"medium","actions":[{"group":"default","id":"elastic-cloud-email","action_type_id":".email","params":{"to":["jycybersec@gmail.com"],"subject":"Suspicious file execution detected","message":"A process was started from /tmp or /dev/shm which is uncommon and could be suspicious."}}]}
 ```
 
 
