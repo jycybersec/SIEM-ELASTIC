@@ -30,7 +30,7 @@ For each rule, we will:
 - **Rule**: Detect multiple failed login attempts within a short time frame.
 - **Condition**: More than 5 failed login attempts from the same IP within 10 minutes.
 - **Trigger**: Monitor authentication logs for `event.type:authentication_failure`.
-- **Detection**: 
+- **Detection Rule**: 
 ```JSON
 {
   "id": "excessive_login_failures",
@@ -61,7 +61,7 @@ For each rule, we will:
 - **Rule**: Identify sudden spikes in network traffic to unusual destinations.
 - **Condition**: An increase of 50% in outbound traffic to a rare external IP address not seen in the last 30 days.
 - **Trigger**: Use network flow data and analyze against historical baselines with `network.direction:outbound`.
-- **Detection**:
+- **Detection Rule**:
 ```JSON
 {
   "rule_id": "unusual_network_traffic",
@@ -98,7 +98,7 @@ For each rule, we will:
 - **Rule**: Alert on execution of files from uncommon directories.
 - **Condition**: Any `process.start` event where the file path is outside of standard directories.
 - **Trigger**: Look for process execution logs with `event.action:process_start` and `file.path:/tmp/*`.
-- **Detection**:
+- **Detection Rule**:
 ```JSON
 {
   "rule_id": "suspicious_file_execution",
@@ -125,7 +125,7 @@ For each rule, we will:
 - **Rule**: Detect large data transfers to external destinations.
 - **Condition**: Any data transfer over 500 MB to an external domain not on the internal network.
 - **Trigger**: Monitor data transfer logs for `event.type:data_transfer and destination.bytes > 500000000` and `destination.ip:192.168.0.0/16 or destination.ip:10.0.0.0/8`.
-- **Detection**:
+- **Detection Rule**:
 ```JSON
 {"rule_id": "data_exfiltration_attempts", "name": "Data Exfiltration Attempts", "description": "Detects data transfer over 500MB to an external domain not on the internal network.","type": "query", "index": ["logs-*", "filebeat-*", "packetbeat-*"], "language": "kuery", "query": "event.type:data_transfer and destination.bytes > 500000000 and not (destination.ip:192.168.0.0/16 or destination.ip:10.0.0.0/8)", "risk_score": 80, "severity": "high", "actions": [{"action_type_id": ".email", "group": "default", "id": "c098b256-21c3-4936-b26d-82244a977c76", "params": {"to": ["jycybersec@gmail.com"], "subject": "Potential data exfiltration attempt detected", "message": "Data transfer over 500MB to an external domain not on the corporate whitelist."}}]}
 ```
