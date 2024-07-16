@@ -12,13 +12,6 @@
 - Agent Fleet
   ![image](https://github.com/user-attachments/assets/00c6ce90-e0e0-491b-bf13-4e92e77c113e)
 
-
-## Manage Detection Rules
-- Open the Elastic SIEM app.
-- Click on the **Detections** tab.
-- Select **Manage detection rules**.
-- Choose to **create new rules** or **import** them if you have the JSON rule definitions.
-
 ## Define Rule Details
 
 For each rule, we will:
