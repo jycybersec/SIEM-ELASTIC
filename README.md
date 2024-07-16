@@ -50,6 +50,9 @@ For each rule, we will:
 ```JSON
 {"rule_id":"unusual_network_traffic","name":"Unusual Network Traffic","description":"Detects unusual outbound network traffic with a significant increase.","type":"query","index":["logs-*","filebeat-*","packetbeat-*"],"language":"kuery","query":"network.direction:outbound and not network.ip:internal","threshold.field":"destination.ip","threshold.value":1,"threshold.cardinality":[{"field":"source.ip","value":"50%"}],"timeframe":"last 30d","risk_score":70,"severity":"high","actions":[{"group":"default","id":"elastic-cloud-email","action_type_id":".email","params":{"to":["jycybersec@gmail.com"],"subject":"Unusual outbound network traffic detected","message":"Increase of 50% or more in outbound traffic to a rare external IP not seen in the last 30 days."}}]}
 ```
+![image](https://github.com/user-attachments/assets/09ed91ba-5447-441d-a235-35ad1bad59da)
+
+![image](https://github.com/user-attachments/assets/d0993332-0aa1-45ee-8a20-71519753b6d4)
 
 ### 3. Suspicious File Execution
 - **Rule**: Alert on execution of files from uncommon directories.
@@ -59,7 +62,9 @@ For each rule, we will:
 ```JSON
 {"rule_id":"suspicious_file_execution","name":"Suspicious File Execution","description":"Detects process start events from suspicious file paths.","type":"query","index":["logs-*","filebeat-*","packetbeat-*"],"language":"kuery","query":"event.action:process_start and file.path:(/tmp/* or /dev/shm/*)","risk_score":50,"severity":"medium","actions":[{"group":"default","id":"elastic-cloud-email","action_type_id":".email","params":{"to":["jycybersec@gmail.com"],"subject":"Suspicious file execution detected","message":"A process was started from /tmp or /dev/shm which is uncommon and could be suspicious."}}]}
 ```
+![image](https://github.com/user-attachments/assets/84d68b5f-4aa3-4778-9116-6b06f5c676f9)
 
+![image](https://github.com/user-attachments/assets/9f093b95-fdf7-42d2-b596-719e63b8ac54)
 
 ### 4. Data Exfiltration Attempts
 - **Rule**: Detect large data transfers to external destinations.
@@ -69,7 +74,9 @@ For each rule, we will:
 ```JSON
 {"rule_id": "data_exfiltration_attempts", "name": "Data Exfiltration Attempts", "description": "Detects data transfer over 500MB to an external domain not on the internal network.","type": "query", "index": ["logs-*", "filebeat-*", "packetbeat-*"], "language": "kuery", "query": "event.type:data_transfer and destination.bytes > 500000000 and not (destination.ip:192.168.0.0/16 or destination.ip:10.0.0.0/8)", "risk_score": 80, "severity": "high", "actions": [{"action_type_id": ".email", "group": "default", "id": "elastic-cloud-email", "params": {"to": ["jycybersec@gmail.com"], "subject": "Potential data exfiltration attempt detected", "message": "Data transfer over 500MB to an external domain not on the internal network."}}]}
 ```
+![image](https://github.com/user-attachments/assets/0ba9765b-f037-4ff6-8b45-3a40a54a4322)
 
+![image](https://github.com/user-attachments/assets/c3502b35-38e4-46f3-bf04-a59c6e639224)
 
 ## Attack Simulation
 
