@@ -20,9 +20,16 @@ An agent will be deployed on each intended machine.
 
 ## Define Rule Details
 For each rule, we will:
-- Define the **index patterns** to search.
-- Specify the **query** to match the suspicious activity.
-- Apply any **additional filters** or **machine learning jobs** to refine the detection.
+- Define the index patterns to search:
+- - We use index patterns such as logs-*, filebeat-*, and packetbeat-* to ensure comprehensive coverage of relevant logs and data sources.
+- Specify the query to match the suspicious activity:
+- - For Excessive Login Failures, the query is event.type:authentication_failure to detect failed login attempts.
+- - For Unusual Network Traffic, the query is network.direction:outbound and not network.ip:internal to identify outbound traffic to external IPs.
+- - For Suspicious File Execution, the query is event.action:process_start and file.path:(/tmp/* or /dev/shm/*) to detect process starts from uncommon directories.
+- Apply any additional filters or machine learning jobs to refine the detection:
+- - For Excessive Login Failures, we set a threshold of more than 5 failed login attempts from the same IP within 10 minutes.
+- - For Unusual Network Traffic, we set a threshold to detect a 50% increase in outbound traffic to rare external IPs not seen in the last 30 days.
+- - For Suspicious File Execution, we monitor for process starts from specific uncommon directories like /tmp and /dev/shm.
 
 ## Detection Rules Setup
 
