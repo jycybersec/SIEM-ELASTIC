@@ -1,4 +1,4 @@
-# Elastic SIEM Simulation
+# ELK (Elasticsearch, Logstash, and Kibana) SIEM Simulation
 
 ## Agent Deployment 
 An agent will be deployed on each intended machine.
