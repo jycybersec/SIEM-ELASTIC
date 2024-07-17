@@ -158,6 +158,8 @@ For each rule, we will:
 
 ### . Data Exfiltration Attempts
 - **Technique**: Compression and encryption of sensitive data before exfiltration.
+- Agent: windows10
+- Attacker: Kali Linux VM
 
 ## Mitigation Strategies
 
