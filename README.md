@@ -159,7 +159,7 @@ For each rule, we will:
 ### . Data Exfiltration Attempts
 - **Technique**: Exfiltration of data using a file transfer service.
 - Agent: windows10
-- Attacker: Kali Linux VM
+- Recipient: Kali Linux
 
 ## Mitigation Strategies
 
