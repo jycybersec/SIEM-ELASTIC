@@ -157,7 +157,7 @@ For each rule, we will:
 - **Technique**: Execution of malware payload from a temporary directory or user profile.
 
 ### . Data Exfiltration Attempts
-- **Technique**: Compression and encryption of sensitive data before exfiltration.
+- **Technique**: Exfiltration of data using a file transfer service.
 - Agent: windows10
 - Attacker: Kali Linux VM
 
