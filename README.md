@@ -71,9 +71,9 @@ For each rule, we will:
 ![image](https://github.com/user-attachments/assets/1cd50c6f-663d-45ec-b0c4-b3e619724146)
 
 ### 2. Malicious process execution
-- **Rule**: Detect multiple failed login attempts within a short time frame.
-- **Condition**: More than 5 failed login attempts from the same IP within 10 minutes.
-- **Trigger**: Monitor authentication logs for `event.code : "4625"` (Login Failures).
+- **Rule**: Detect a variety of Malicous Process Arguments.
+- **Condition**: Malicous process is executed.
+- **Trigger**: Monitor process logs for matching arguments.
 - **Detection Rule**: 
 ```JSON
 {"rule_id":"Malicious_Process_Execution",
