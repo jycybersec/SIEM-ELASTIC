@@ -70,6 +70,30 @@ For each rule, we will:
 
 ![image](https://github.com/user-attachments/assets/1cd50c6f-663d-45ec-b0c4-b3e619724146)
 
+### 2. Malicious process execution
+- **Rule**: Detect multiple failed login attempts within a short time frame.
+- **Condition**: More than 5 failed login attempts from the same IP within 10 minutes.
+- **Trigger**: Monitor authentication logs for `event.code : "4625"` (Login Failures).
+- **Detection Rule**: 
+```JSON
+{"rule_id":"Malicious_Process_Execution",
+"name":"Malicious Process Execution",
+"description":"Detects a variety of known malicious process executions.",
+"risk_score":73,
+"severity":"high",
+"type":"query",
+"index":["apm-*-transaction*", "auditbeat-*", "endgame-*", "filebeat-*", "logs-*", "packetbeat-*", "traces-apm*", "winlogbeat-*", "-*elastic-cloud-logs-*"],
+"language":"kuery",
+"query": process.args : "*nmap*" or process.args: "*ncrack*" or process.args: "*;*" or process.args: "*mimikatz*" or process.args: "*powershell.exe -nop -w hidden -enc*" or process.args: "*powershell.exe -ExecutionPolicy Bypass -File*" or process.args: "*cmd.exe /c*" or process.args: "*cmd.exe /k*" or process.args: "*wmic process call create*" or process.args: "*wmic /node*" or process.args: "*mshta.exe*" or process.args: "*mshta vbscript:*" or process.args: "*bitsadmin /transfer*" or process.args: "*bitsadmin /create*" or process.args: "*certutil -urlcache*" or process.args: "*certutil -decode*" or process.args: "*rundll32.exe javascript:*" or process.args: "*rundll32.exe shell32.dll,Control_RunDLL*" or process.args: "*regsvr32 /s /n /u /i:*" or process.args: "*regsvr32 /s /i:*" or process.args: "*msbuild.exe /p:*" or process.args: "*msbuild.exe /t:*" or process.args: "*schtasks /create /tn*" or process.args: "*schtasks /run /tn*"
+"interval":"5m",
+"from":"now-1m",
+"actions":[{"group":"default",
+"id":"elastic-cloud-email",
+"action_type_id":".email",
+"params":{"to":["jycybersec@gmail.com"],
+"subject":"Malicious Process Execution",
+"message":"Rule {{context.rule.name}} generated {{state.signals_count}} alerts"}}]}
+```
 
 ### 2. Unusual Network Traffic
 - **Rule**: Identify sudden spikes in network traffic to unusual destinations.
