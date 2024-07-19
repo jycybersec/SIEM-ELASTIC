@@ -20,7 +20,7 @@ For each rule, we will:
     - We'll use index patterns such as `logs-*`, `filebeat-*`, and `packetbeat-*` to ensure comprehensive coverage of relevant logs and data sources.
 
   - Specify the **query** to match the suspicious activity:
-    - For **Excessive Login Failures**, the query is `event.type:authentication_failure` to detect failed login attempts.
+    - For **Excessive Login Failures**, the query is `event.code : "4625"` to detect failed login attempts.
     - For **Unusual Network Traffic**, the query is `network.direction:outbound and not network.ip:internal` to identify outbound traffic to external IPs.
     - For **Suspicious File Execution**, the query is `event.action:process_start and file.path:(/tmp/* or /dev/shm/*)` to detect process starts from uncommon directories.
 
@@ -31,30 +31,30 @@ For each rule, we will:
 
 ## Detection Rules Setup
 
-### 1. Excessive Login Failures
+### 1. Brute Force Attempt
 - **Rule**: Detect multiple failed login attempts within a short time frame.
 - **Condition**: More than 5 failed login attempts from the same IP within 10 minutes.
-- **Trigger**: Monitor authentication logs for `event.type:authentication_failure`.
+- **Trigger**: Monitor authentication logs for `event.code : "4625"` (Login Failures).
 - **Detection Rule**: 
 ```JSON
-{"rule_id":"excessive_login_failures",
-"name":"Excessive Login Failures",
+{"rule_id":"Brute_Force_Attempt",
+"name":"Brute Force Attempt",
 "description":"Detects multiple failed login attempts from the same IP within 10 minutes.",
-"risk_score":21,
+"risk_score":35,
 "severity":"medium",
 "type":"threshold",
-"index":["logs-*","filebeat-*","packetbeat-*"],
+"index":["apm-*-transaction*", "auditbeat-*", "endgame-*", "filebeat-*", "logs-*", "packetbeat-*", "traces-apm*", "winlogbeat-*", "-*elastic-cloud-logs-*"],
 "language":"kuery",
-"query":"event.type:authentication_failure",
-"threshold":{"field":["source.ip"],"value":5,
+"query":"event.code : "4625"",
+"threshold":{"field":["user.name"],"value":5,
 "interval":"10m",
 "from":"now-10m",
 "actions":[{"group":"default",
 "id":"elastic-cloud-email",
 "action_type_id":".email",
 "params":{"to":["jycybersec@gmail.com"],
-"subject":"Multiple failed login attempts detected",
-"message":"More than 5 failed login attempts from the same IP within 10 minutes."}}]}
+"subject":"Brute Force Attempt",
+"message":"Rule {{context.rule.name}} generated {{state.signals_count}} alerts"}}]}
 ```
 ### Manual Setup
 ![image](https://github.com/user-attachments/assets/31a7bd23-1b94-4614-8ce3-2bcd2d583e32)
@@ -74,7 +74,7 @@ For each rule, we will:
 "name":"Unusual Network Traffic",
 "description":"Detects unusual outbound network traffic with a significant increase.",
 "type":"query",
-"index":["logs-*","filebeat-*","packetbeat-*"],
+"index":["apm-*-transaction*", "auditbeat-*", "endgame-*", "filebeat-*", "logs-*", "packetbeat-*", "traces-apm*", "winlogbeat-*", "-*elastic-cloud-logs-*"],
 "language":"kuery",
 "query":"network.direction:outbound and not network.ip:internal",
 "threshold.field":"destination.ip",
@@ -104,7 +104,7 @@ For each rule, we will:
 "name":"Suspicious File Execution",
 "description":"Detects process start events from suspicious file paths.",
 "type":"query",
-"index":["logs-*","filebeat-*","packetbeat-*"],
+"index":["apm-*-transaction*", "auditbeat-*", "endgame-*", "filebeat-*", "logs-*", "packetbeat-*", "traces-apm*", "winlogbeat-*", "-*elastic-cloud-logs-*"],
 "language":"kuery",
 "query":"event.action:process_start and file.path:(/tmp/* or /dev/shm/*)",
 "risk_score":50,
@@ -129,7 +129,7 @@ For each rule, we will:
 "name": "Data Exfiltration Attempts",
 "description": "Detects data transfer over 500MB to an external domain not on the internal network.",
 "type": "query", 
-"index": ["logs-*", "filebeat-*", "packetbeat-*"], 
+"index":["apm-*-transaction*", "auditbeat-*", "endgame-*", "filebeat-*", "logs-*", "packetbeat-*", "traces-apm*", "winlogbeat-*", "-*elastic-cloud-logs-*"],
 "language": "kuery",
 "query": "event.type:data_transfer and destination.bytes > 500000000 and not (destination.ip:192.168.0.0/16 or destination.ip:10.0.0.0/8)",
 "risk_score": 80,
