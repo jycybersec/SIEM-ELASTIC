@@ -57,11 +57,15 @@ For each rule, we will:
 "message":"Rule {{context.rule.name}} generated {{state.signals_count}} alerts"}}]}
 ```
 ### Manual Setup
-![image](https://github.com/user-attachments/assets/31a7bd23-1b94-4614-8ce3-2bcd2d583e32)
+![image](https://github.com/user-attachments/assets/f17d6482-a655-4480-b8fb-fe179119abeb)
 
-![image](https://github.com/user-attachments/assets/572976b4-5e63-42ab-aa5f-87c011c32f4f)
+![image](https://github.com/user-attachments/assets/dcc42ceb-4b85-43cd-89e9-29e171ca1933)
 
-![image](https://github.com/user-attachments/assets/ae1d4b0f-e750-4386-b124-f9ba95186d41)
+![image](https://github.com/user-attachments/assets/c21a2b2e-907f-4264-89d0-4341bb543be5)
+
+![image](https://github.com/user-attachments/assets/0cf62676-d148-4927-9ecd-6df86d04aab0)
+
+![image](https://github.com/user-attachments/assets/1cd50c6f-663d-45ec-b0c4-b3e619724146)
 
 
 ### 2. Unusual Network Traffic
@@ -148,7 +152,19 @@ For each rule, we will:
 ## Attack Simulation
 
 ### 1. Excessive Login Failures
-- **Technique**: Brute force attack with various username and password combinations.
+- **Technique**: Brute force SMB login using Metasploit Framework.
+- Agent: windows11
+- Attacker: Kali Linux
+
+Pass.txt FIle Creation
+![image](https://github.com/user-attachments/assets/962f5cd9-84d3-49e1-9798-7d0a073b8679)
+
+SMB Brute Force Attack
+![image](https://github.com/user-attachments/assets/0390426c-d565-4359-9d4c-87277edef44d)
+
+Alert
+![image](https://github.com/user-attachments/assets/59a09334-6061-4b10-9820-9b6591f99998)
+
 
 ### 2. Unusual Network Traffic
 - **Technique**: Data exfiltration over a different protocol or port to avoid detection.
