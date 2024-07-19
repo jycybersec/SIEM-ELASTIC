@@ -11,6 +11,9 @@
   ![image](https://github.com/user-attachments/assets/0996a2c8-0698-4f00-8735-3a2fe3cd525e)
 - Agent Fleet
   ![image](https://github.com/user-attachments/assets/00c6ce90-e0e0-491b-bf13-4e92e77c113e)
+- Integrations
+  ![image](https://github.com/user-attachments/assets/01dec130-1f79-4de1-b8a4-94ea3ba459aa)
+
 
 ## Define Rule Details
 
