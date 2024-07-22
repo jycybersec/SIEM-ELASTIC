@@ -98,7 +98,8 @@ process.args: *certutil* or
 process.args: *rundll32.exe* or
 process.args: *regsvr32* or
 process.args: *msbuild.exe* or
-process.args: *schtasks* or process.args: *agenttesla* or
+process.args: *schtasks* or
+process.args: *agenttesla* or
 process.args: *azorult* or
 process.args: *formbook* or
 process.args: *ursnif* or
@@ -118,7 +119,7 @@ process.args: *gh0strat* or
 process.args: *tinybanker* or
 process.args: *clickbot* or
 process.args: *zeus* or
-process.args: *shedun*"",
+process.args: *shedun*",
 "interval":"5m",
 "from":"now-1m",
 "actions":[{"group":"default",
