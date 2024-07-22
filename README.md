@@ -148,7 +148,7 @@ For each rule, we will:
 "subject": "Potential data exfiltration attempt detected",
 "message": "Data transfer over 500MB to an external domain not on the internal network."}}]}
 ```
-![image](https://github.com/user-attachments/assets/c3502b35-38e4-46f3-bf04-a59c6e639224)
+![image](https://github.com/user-attachments/assets/4b882dfa-a16b-47b2-aab5-01a2352582a5)
 
 
 ## Attack Simulation
