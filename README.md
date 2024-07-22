@@ -32,6 +32,7 @@ For each rule, we will:
     - For **Unusual Network Traffic**, we set a threshold to detect a 50% increase in outbound traffic to rare external IPs not seen in the last 30 days.
     - For **Suspicious File Execution**, we monitor for process starts from specific uncommon directories like `/tmp` and `/dev/shm`.
 
+
 ## Detection Rules Setup
 
 ### 1. Brute Force Attempt
@@ -72,6 +73,7 @@ For each rule, we will:
 
 ![image](https://github.com/user-attachments/assets/af4ed663-5024-4dc1-ac46-3ec9f7a9f846)
 
+
 ### 2. Malicious process execution
 - **Rule**: Detect a variety of Malicous Process Arguments.
 - **Condition**: Malicous process is executed.
@@ -98,6 +100,7 @@ For each rule, we will:
 ```
 ![image](https://github.com/user-attachments/assets/90536a70-303b-4635-866f-aaf12746ba2b)
 
+
 ### 3. Uncommon Directory File Execution
 - **Rule**: Alert on execution of files from uncommon directories.
 - **Condition**: Any `process.start` event where the file path is outside of standard directories.
@@ -120,6 +123,7 @@ For each rule, we will:
 "message":"A process was started from /tmp or /dev/shm which is uncommon and could be suspicious."}}]}
 ```
 ![image](https://github.com/user-attachments/assets/ccbbf7bd-eeb1-4568-b57c-6fa8cefe179c)
+
 
 ### 4. Data Exfiltration Attempts
 - **Rule**: Detect large data transfers to external destinations.
@@ -145,6 +149,7 @@ For each rule, we will:
 ```
 ![image](https://github.com/user-attachments/assets/c3502b35-38e4-46f3-bf04-a59c6e639224)
 
+
 ## Attack Simulation
 
 ### 1. Brute Force Attempt
@@ -161,6 +166,7 @@ SMB Brute Force Attack
 Alert
 ![image](https://github.com/user-attachments/assets/59a09334-6061-4b10-9820-9b6591f99998)
 
+
 ### 2. Malicious Process Execution
 - **Technique**: Perform an Nmap port/service enumeration and a certutility command to extract url cache.
 - Agent: windows10
@@ -176,6 +182,7 @@ Nmap -sT -A 10.0.2.15 (TCP Connect with Agressive Scan) to reveil open ports and
 Alert
 ![image](https://github.com/user-attachments/assets/18888920-b2cf-4ad4-a516-937a6a679f5a)
 
+
 ### 3. Uncommon Directory File Execution
 - **Technique**: Execution of malware payload from a temporary directory or user profile.
 
@@ -186,6 +193,7 @@ File Creation, Modification, and Execuiton
 ![image](https://github.com/user-attachments/assets/84483d04-7f0d-4287-bcbb-89df62d68419)
 
 Alert
+![image](https://github.com/user-attachments/assets/bde38980-3ac3-4a8b-bf28-db10a1e42168)
 
 
 ### 4. Data Exfiltration Attempts
