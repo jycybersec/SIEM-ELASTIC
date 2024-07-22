@@ -70,6 +70,8 @@ For each rule, we will:
 
 ![image](https://github.com/user-attachments/assets/1cd50c6f-663d-45ec-b0c4-b3e619724146)
 
+![image](https://github.com/user-attachments/assets/af4ed663-5024-4dc1-ac46-3ec9f7a9f846)
+
 ### 2. Malicious process execution
 - **Rule**: Detect a variety of Malicous Process Arguments.
 - **Condition**: Malicous process is executed.
@@ -94,6 +96,7 @@ For each rule, we will:
 "subject":"Malicious Process Execution",
 "message":"Rule {{context.rule.name}} generated {{state.signals_count}} alerts"}}]}
 ```
+![image](https://github.com/user-attachments/assets/15153a2c-ea28-41e3-89fd-e4b096a5f6dd)
 
 ### 2. Unusual Network Traffic
 - **Rule**: Identify sudden spikes in network traffic to unusual destinations.
@@ -121,8 +124,6 @@ For each rule, we will:
 "subject":"Unusual outbound network traffic detected",
 "message":"Increase of 50% or more in outbound traffic to a rare external IP not seen in the last 30 days."}}]}
 ```
-![image](https://github.com/user-attachments/assets/09ed91ba-5447-441d-a235-35ad1bad59da)
-
 ![image](https://github.com/user-attachments/assets/d0993332-0aa1-45ee-8a20-71519753b6d4)
 
 ### 3. Suspicious File Execution
@@ -146,8 +147,6 @@ For each rule, we will:
 "subject":"Suspicious file execution detected",
 "message":"A process was started from /tmp or /dev/shm which is uncommon and could be suspicious."}}]}
 ```
-![image](https://github.com/user-attachments/assets/84d68b5f-4aa3-4778-9116-6b06f5c676f9)
-
 ![image](https://github.com/user-attachments/assets/9f093b95-fdf7-42d2-b596-719e63b8ac54)
 
 ### 4. Data Exfiltration Attempts
@@ -172,8 +171,6 @@ For each rule, we will:
 "subject": "Potential data exfiltration attempt detected",
 "message": "Data transfer over 500MB to an external domain not on the internal network."}}]}
 ```
-![image](https://github.com/user-attachments/assets/0ba9765b-f037-4ff6-8b45-3a40a54a4322)
-
 ![image](https://github.com/user-attachments/assets/c3502b35-38e4-46f3-bf04-a59c6e639224)
 
 ## Attack Simulation
