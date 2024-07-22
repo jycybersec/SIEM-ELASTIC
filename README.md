@@ -98,35 +98,7 @@ For each rule, we will:
 ```
 ![image](https://github.com/user-attachments/assets/90536a70-303b-4635-866f-aaf12746ba2b)
 
-### 2. Unusual Network Traffic
-- **Rule**: Identify sudden spikes in network traffic to unusual destinations.
-- **Condition**: An increase of 50% in outbound traffic to a rare external IP address not seen in the last 30 days.
-- **Trigger**: Use network flow data and analyze against historical baselines with `network.direction:outbound`.
-- **Detection Rule**:
-```JSON
-{"rule_id":"unusual_network_traffic",
-"name":"Unusual Network Traffic",
-"description":"Detects unusual outbound network traffic with a significant increase.",
-"type":"query",
-"index":["apm-*-transaction*", "auditbeat-*", "endgame-*", "filebeat-*", "logs-*", "packetbeat-*", "traces-apm*", "winlogbeat-*", "-*elastic-cloud-logs-*"],
-"language":"kuery",
-"query":"network.direction:outbound and not network.ip:internal",
-"threshold.field":"destination.ip",
-"threshold.value":1,
-"threshold.cardinality":[{"field":"source.ip","value":"50%"}],
-"timeframe":"last 30d",
-"risk_score":70,
-"severity":"high",
-"actions":[{"group":"default",
-"id":"elastic-cloud-email",
-"action_type_id":".email",
-"params":{"to":["jycybersec@gmail.com"],
-"subject":"Unusual outbound network traffic detected",
-"message":"Increase of 50% or more in outbound traffic to a rare external IP not seen in the last 30 days."}}]}
-```
-![image](https://github.com/user-attachments/assets/d0993332-0aa1-45ee-8a20-71519753b6d4)
-
-### 3. Suspicious File Execution
+### 3. Uncommon Directory File Execution
 - **Rule**: Alert on execution of files from uncommon directories.
 - **Condition**: Any `process.start` event where the file path is outside of standard directories.
 - **Trigger**: Look for process execution logs with `event.action:process_start` and `file.path:/tmp/*`.
@@ -204,14 +176,18 @@ Nmap -sT -A 10.0.2.15 (TCP Connect with Agressive Scan) to reveil open ports and
 Alert
 ![image](https://github.com/user-attachments/assets/18888920-b2cf-4ad4-a516-937a6a679f5a)
 
-
-### 2. Unusual Network Traffic
-- **Technique**: Data exfiltration over a different protocol or port to avoid detection.
-
-### 3. Suspicious File Execution
+### 3. Uncommon Directory File Execution
 - **Technique**: Execution of malware payload from a temporary directory or user profile.
+Malware Payload
+![image](https://github.com/user-attachments/assets/c6548873-59e2-4cd6-9af6-84d760e1e835)
 
-### . Data Exfiltration Attempts
+File Creation, Modification, and Execuiton
+![image](https://github.com/user-attachments/assets/84483d04-7f0d-4287-bcbb-89df62d68419)
+
+Alert
+
+
+### 4. Data Exfiltration Attempts
 - **Technique**: Exfiltration of data using a file transfer service.
 - Agent: windows10
 - Recipient: Kali Linux
