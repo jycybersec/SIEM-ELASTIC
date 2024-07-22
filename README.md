@@ -178,6 +178,7 @@ Alert
 
 ### 3. Uncommon Directory File Execution
 - **Technique**: Execution of malware payload from a temporary directory or user profile.
+
 Malware Payload
 ![image](https://github.com/user-attachments/assets/c6548873-59e2-4cd6-9af6-84d760e1e835)
 
