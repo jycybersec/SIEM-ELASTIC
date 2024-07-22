@@ -96,8 +96,7 @@ For each rule, we will:
 "subject":"Malicious Process Execution",
 "message":"Rule {{context.rule.name}} generated {{state.signals_count}} alerts"}}]}
 ```
-![image](https://github.com/user-attachments/assets/15153a2c-ea28-41e3-89fd-e4b096a5f6dd)
-
+![image](https://github.com/user-attachments/assets/c9aa1f12-3012-4db6-aac4-350f6a3996b9)
 ### 2. Unusual Network Traffic
 - **Rule**: Identify sudden spikes in network traffic to unusual destinations.
 - **Condition**: An increase of 50% in outbound traffic to a rare external IP address not seen in the last 30 days.
