@@ -191,9 +191,13 @@ Alert
 ### 2. Malicious Process Execution
 - **Technique**: Perform an Nmap port/service enumeration and a certutility command to extract url cache.
 - Agent: windows10
+
+Certutil -urlcache Extraction
 ![image](https://github.com/user-attachments/assets/f72e17ee-a3c1-463b-9396-32aac5f6cb02)
 
 - Agent: purplesec
+
+Nmap -sT -A 10.0.2.15 (TCP Connect with Agressive Scan) to reveil open ports and OS information
 ![image](https://github.com/user-attachments/assets/b147a949-6a56-4acc-9bd9-cb95de9cead2)
 
 Alert
