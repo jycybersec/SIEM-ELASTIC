@@ -119,7 +119,7 @@ For each rule, we will:
 "subject":"Suspicious file execution detected",
 "message":"A process was started from /tmp or /dev/shm which is uncommon and could be suspicious."}}]}
 ```
-![image](https://github.com/user-attachments/assets/9f093b95-fdf7-42d2-b596-719e63b8ac54)
+![image](https://github.com/user-attachments/assets/ccbbf7bd-eeb1-4568-b57c-6fa8cefe179c)
 
 ### 4. Data Exfiltration Attempts
 - **Rule**: Detect large data transfers to external destinations.
