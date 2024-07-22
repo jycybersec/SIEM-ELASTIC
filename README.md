@@ -216,6 +216,22 @@ Alert
 - Agent: windows10
 - Recipient: Kali Linux
 
+Kali External IP
+![image](https://github.com/user-attachments/assets/6198bf3d-f3cd-4a58-8895-be43ce0cf789)
+
+Sensitive.txt 600 MB File Creation
+![image](https://github.com/user-attachments/assets/13078d09-0d26-404a-af72-43e1d7c1990d)
+
+SCP File Transfer
+![image](https://github.com/user-attachments/assets/b28e7e37-a828-4977-a401-a6bb6d00964e)
+
+Received FIle
+![image](https://github.com/user-attachments/assets/53ed0e95-78a1-4e75-a9ed-11d48942e563)
+
+Alert
+![image](https://github.com/user-attachments/assets/aac322ae-4460-464e-962a-768f744bc627)
+
+
 ## Mitigation Strategies
 
 ### 1. Excessive Login Failures
