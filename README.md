@@ -174,12 +174,12 @@ For each rule, we will:
 
 ## Attack Simulation
 
-### 1. Excessive Login Failures
+### 1. Brute Force Attempt
 - **Technique**: Brute force SMB login using Metasploit Framework.
 - Agent: windows11
 - Attacker: Kali Linux
 
-Pass.txt FIle Creation
+Pass.txt File Creation
 ![image](https://github.com/user-attachments/assets/962f5cd9-84d3-49e1-9798-7d0a073b8679)
 
 SMB Brute Force Attack
@@ -187,6 +187,17 @@ SMB Brute Force Attack
 
 Alert
 ![image](https://github.com/user-attachments/assets/59a09334-6061-4b10-9820-9b6591f99998)
+
+### 2. Malicious Process Execution
+- **Technique**: Perform an Nmap port/service enumeration and a certutility command to extract url cache.
+- Agent: windows10
+![image](https://github.com/user-attachments/assets/f72e17ee-a3c1-463b-9396-32aac5f6cb02)
+
+- Agent: purplesec
+![image](https://github.com/user-attachments/assets/b147a949-6a56-4acc-9bd9-cb95de9cead2)
+
+Alert
+![image](https://github.com/user-attachments/assets/18888920-b2cf-4ad4-a516-937a6a679f5a)
 
 
 ### 2. Unusual Network Traffic
