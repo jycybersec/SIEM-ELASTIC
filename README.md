@@ -29,7 +29,7 @@ For each rule, we will:
     - For **Data Exfiltration Attempts**, the query uses `event.type:data_transfer and destination.bytes > 500000000 and not (destination.ip:192.168.0.0/16 or destination.ip:10.0.0.0/8) ` to detect large data transfers to external destinations.
 
   - Apply any **additional filters** or **machine learning jobs** to refine the detection:
-    - For *Brute Force Attempt**, we set a threshold of more than 5 failed login attempts from the same IP within 10 minutes.
+    - For *Brute Force Attempt**, we set a threshold of 5 failed login attempts.
     - For **Malicious Process Execution**, We monitor for process logs with specific malicious arguments.
     - For **Uncommon Directory File Execution**, we monitor for process starts from specific uncommon directories like `/tmp` and `/dev/shm`.
     - For **Data Exfiltration Attempts**, We set a threshold to detect any data transfer over 500 MB to an external domain not on the internal network.
@@ -44,7 +44,7 @@ For each rule, we will:
 ```JSON
 {"rule_id":"Brute_Force_Attempt",
 "name":"Brute Force Attempt",
-"description":"Detects multiple failed login attempts from the same IP within 10 minutes.",
+"description":"Detects multiple failed login attempts.",
 "risk_score":35,
 "severity":"medium",
 "type":"threshold",
