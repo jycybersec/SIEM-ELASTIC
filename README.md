@@ -86,7 +86,7 @@ For each rule, we will:
 "type":"query",
 "index":["apm-*-transaction*", "auditbeat-*", "endgame-*", "filebeat-*", "logs-*", "packetbeat-*", "traces-apm*", "winlogbeat-*", "-*elastic-cloud-logs-*"],
 "language":"kuery",
-"query": "process.args: *nmap* or
+"query": process.args: *nmap* or
 process.args: *ncrack* or
 process.args: *mimikatz* or
 process.args: *powershell.exe* or
@@ -119,7 +119,7 @@ process.args: *gh0strat* or
 process.args: *tinybanker* or
 process.args: *clickbot* or
 process.args: *zeus* or
-process.args: *shedun*",
+process.args: *shedun*,
 "interval":"5m",
 "from":"now-1m",
 "actions":[{"group":"default",
