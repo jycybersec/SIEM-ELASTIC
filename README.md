@@ -86,7 +86,39 @@ For each rule, we will:
 "type":"query",
 "index":["apm-*-transaction*", "auditbeat-*", "endgame-*", "filebeat-*", "logs-*", "packetbeat-*", "traces-apm*", "winlogbeat-*", "-*elastic-cloud-logs-*"],
 "language":"kuery",
-"query": "process.args : \"*nmap*\" or process.args: \"*ncrack*\" or process.args: \"*;*\" or process.args: \"*mimikatz*\" or process.args: \"*powershell.exe -nop -w hidden -enc*\" or process.args: \"*powershell.exe -ExecutionPolicy Bypass -File*\" or process.args: \"*cmd.exe /c*\" or process.args: \"*cmd.exe /k*\" or process.args: \"*wmic process call create*\" or process.args: \"*wmic /node*\" or process.args: \"*mshta.exe*\" or process.args: \"*mshta vbscript:*\" or process.args: \"*bitsadmin /transfer*\" or process.args: \"*bitsadmin /create*\" or process.args: \"*certutil -urlcache*\" or process.args: \"*certutil -decode*\" or process.args: \"*rundll32.exe javascript:*\" or process.args: \"*rundll32.exe shell32.dll,Control_RunDLL*\" or process.args: \"*regsvr32 /s /n /u /i:*\" or process.args: \"*regsvr32 /s /i:*\" or process.args: \"*msbuild.exe /p:*\" or process.args: \"*msbuild.exe /t:*\" or process.args: \"*schtasks /create /tn*\" or process.args: \"*schtasks /run /tn*\"",
+"query": "process.args: *nmap* or
+process.args: *ncrack* or
+process.args: *mimikatz* or
+process.args: *powershell.exe* or
+process.args: *cmd.exe* or
+process.args: *wmic* or
+process.args: *mshta* or
+process.args: *bitsadmin* or
+process.args: *certutil* or
+process.args: *rundll32.exe* or
+process.args: *regsvr32* or
+process.args: *msbuild.exe* or
+process.args: *schtasks* or process.args: *agenttesla* or
+process.args: *azorult* or
+process.args: *formbook* or
+process.args: *ursnif* or
+process.args: *lokibot* or
+process.args: *nanocore* or
+process.args: *qakbot* or
+process.args: *remcos* or
+process.args: *trickbot* or
+process.args: *gootloader* or
+process.args: *magiclantern* or
+process.args: *finfisher* or
+process.args: *warriorpride* or
+process.args: *netbus* or
+process.args: *beast* or
+process.args: *blackhole* or
+process.args: *gh0strat* or
+process.args: *tinybanker* or
+process.args: *clickbot* or
+process.args: *zeus* or
+process.args: *shedun*",
 "interval":"5m",
 "from":"now-1m",
 "actions":[{"group":"default",
