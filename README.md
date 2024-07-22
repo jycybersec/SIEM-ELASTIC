@@ -20,18 +20,19 @@
 For each rule, we will:
 
   - Define the **index patterns** to search:
-    - We'll use index patterns such as `logs-*`, `filebeat-*`, and `packetbeat-*` to ensure comprehensive coverage of relevant logs and data sources.
+    - We’ll use index patterns such as apm-*-transaction*, auditbeat-*, endgame-*, filebeat-*, logs-*, packetbeat-*, traces-apm*, winlogbeat-*, and -*elastic-cloud-logs-* to ensure comprehensive coverage of relevant logs and data sources.
 
   - Specify the **query** to match the suspicious activity:
-    - For **Excessive Login Failures**, the query is `event.code : "4625"` to detect failed login attempts.
-    - For **Unusual Network Traffic**, the query is `network.direction:outbound and not network.ip:internal` to identify outbound traffic to external IPs.
-    - For **Suspicious File Execution**, the query is `event.action:process_start and file.path:(/tmp/* or /dev/shm/*)` to detect process starts from uncommon directories.
+    - For **Brute Force Attempt**, the query is `event.code : "4625"` to detect failed login attempts.
+    - For **Malicious Process Execution**, the query is `process.args and process.command_line.text` to identify malicious process executions and specific commands.
+    - For **Suspicious File Execution**, the query uses `event.action:process_start and file.path:(/tmp/* or /dev/shm/*)` to detect process starts from uncommon directories.
+    - For **Data Exfiltration Attempts**, the query uses `event.type:data_transfer and destination.bytes > 500000000 and not (destination.ip:192.168.0.0/16 or destination.ip:10.0.0.0/8) ` to detect large data transfers to external destinations.
 
   - Apply any **additional filters** or **machine learning jobs** to refine the detection:
-    - For **Excessive Login Failures**, we set a threshold of more than 5 failed login attempts from the same IP within 10 minutes.
-    - For **Unusual Network Traffic**, we set a threshold to detect a 50% increase in outbound traffic to rare external IPs not seen in the last 30 days.
-    - For **Suspicious File Execution**, we monitor for process starts from specific uncommon directories like `/tmp` and `/dev/shm`.
-
+    - For *Brute Force Attempt**, we set a threshold of more than 5 failed login attempts from the same IP within 10 minutes.
+    - For **Malicious Process Execution**, We monitor for process logs with specific malicious arguments.
+    - For **Uncommon Directory File Execution**, we monitor for process starts from specific uncommon directories like `/tmp` and `/dev/shm`.
+    - For **Data Exfiltration Attempts**, We set a threshold to detect any data transfer over 500 MB to an external domain not on the internal network.
 
 ## Detection Rules Setup
 
@@ -219,13 +220,13 @@ Alert
 
 ## Mitigation Strategies
 
-### 1. Excessive Login Failures
+### 1. Brute Foce Attempt
 - **Mitigation**: Implement account lockout policies and monitor for repeated authentication failures.
 
-### 2. Unusual Network Traffic
-- **Mitigation**: Employ network segmentation and egress filtering, and monitor for unusual traffic patterns.
+### 2. Malicious Process Execution
+- **Mitigation**: Implement application whitelisting, monitor process creation events, and use endpoint detection and response (EDR) solutions to detect and block malicious processes.
 
-### 3. Suspicious File Execution
+### 3. Uncommon Directory File Execution
 - **Mitigation**: Restrict execution from non-standard directories and monitor process creation events.
 
 ### 4. Data Exfiltration Attempts
