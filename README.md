@@ -107,7 +107,7 @@ For each rule, we will:
 - **Trigger**: Look for process execution logs with `event.action:process_start` and `file.path:/tmp/*`.
 - **Detection Rule**:
 ```JSON
-{"rule_id":"suspicious_file_execution",
+{"rule_id":"uncommon_directory_file_execution",
 "name":"Suspicious File Execution",
 "description":"Detects process start events from suspicious file paths.",
 "type":"query",
