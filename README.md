@@ -2,27 +2,26 @@
 
 ## Agent Deployment 
 - #1 Kali Purple "purplesec"
-
   ![image](https://github.com/user-attachments/assets/6d691106-619d-4a1d-8a8e-0d2ff4d49c5e)
 
+  
 - #2 Kali OffSec "jycybersec"
-
   ![image](https://github.com/user-attachments/assets/107a6332-a6a2-4735-985a-34f005240e95)
 
-- #3 Windows 10 "windows10"
 
+- #3 Windows 10 "windows10"
   ![image](https://github.com/user-attachments/assets/cf7d853c-df92-428d-9641-345a91803f52)
 
-- #4 Windows 11 x64 "windows11"
 
+- #4 Windows 11 x64 "windows11"
   ![image](https://github.com/user-attachments/assets/0996a2c8-0698-4f00-8735-3a2fe3cd525e)
 
-- Agent Fleet
 
+- Agent Fleet
   ![image](https://github.com/user-attachments/assets/00c6ce90-e0e0-491b-bf13-4e92e77c113e)
 
-- Integrations
 
+- Integrations
   ![image](https://github.com/user-attachments/assets/559e55d2-41a3-4e27-847c-25abb064b2df)
 
 
@@ -72,6 +71,7 @@ For each rule, we will:
 "subject":"Brute Force Attempt",
 "message":"Rule {{context.rule.name}} generated {{state.signals_count}} alerts"}}]}
 ```
+
 ### Manual Setup
 ![image](https://github.com/user-attachments/assets/f17d6482-a655-4480-b8fb-fe179119abeb)
 
@@ -173,34 +173,32 @@ For each rule, we will:
 - Attacker: Kali Linux
 
 Pass.txt File Creation
-
 ![image](https://github.com/user-attachments/assets/962f5cd9-84d3-49e1-9798-7d0a073b8679)
 
-SMB Brute Force Attack
 
+SMB Brute Force Attack
 ![image](https://github.com/user-attachments/assets/0390426c-d565-4359-9d4c-87277edef44d)
 
-Alert
 
+Alert
 ![image](https://github.com/user-attachments/assets/59a09334-6061-4b10-9820-9b6591f99998)
 
 
 ### 2. Malicious Process Execution
 - **Technique**: Perform an Nmap port/service enumeration and a certutility command to extract url cache.
+  
 - Agent: windows10
 
 Certutil -urlcache Extraction
-
 ![image](https://github.com/user-attachments/assets/f72e17ee-a3c1-463b-9396-32aac5f6cb02)
 
 - Agent: purplesec
 
 Nmap -sT -A 10.0.2.15 (TCP Connect with Agressive Scan) to reveil open ports and OS information
-
 ![image](https://github.com/user-attachments/assets/b147a949-6a56-4acc-9bd9-cb95de9cead2)
 
-Alert
 
+Alert
 ![image](https://github.com/user-attachments/assets/18888920-b2cf-4ad4-a516-937a6a679f5a)
 
 
@@ -208,15 +206,14 @@ Alert
 - **Technique**: Execution of malware payload from a temporary directory or user profile.
 
 Malware Payload
-
 ![image](https://github.com/user-attachments/assets/c6548873-59e2-4cd6-9af6-84d760e1e835)
 
-File Creation, Modification, and Execuiton
 
+File Creation, Modification, and Execuiton
 ![image](https://github.com/user-attachments/assets/84483d04-7f0d-4287-bcbb-89df62d68419)
 
-Alert
 
+Alert
 ![image](https://github.com/user-attachments/assets/bde38980-3ac3-4a8b-bf28-db10a1e42168)
 
 
@@ -226,23 +223,22 @@ Alert
 - Recipient: Kali Linux
 
 Kali External IP
-
 ![image](https://github.com/user-attachments/assets/6198bf3d-f3cd-4a58-8895-be43ce0cf789)
 
-Sensitive.txt 600 MB File Creation
 
+Sensitive.txt 600 MB File Creation
 ![image](https://github.com/user-attachments/assets/13078d09-0d26-404a-af72-43e1d7c1990d)
 
-SCP File Transfer
 
+SCP File Transfer
 ![image](https://github.com/user-attachments/assets/b28e7e37-a828-4977-a401-a6bb6d00964e)
 
-Received FIle
 
+Received FIle
 ![image](https://github.com/user-attachments/assets/53ed0e95-78a1-4e75-a9ed-11d48942e563)
 
-Alert
 
+Alert
 ![image](https://github.com/user-attachments/assets/aac322ae-4460-464e-962a-768f744bc627)
 
 
