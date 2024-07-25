@@ -25,7 +25,7 @@ For each rule, we will:
   - Specify the **query** to match the suspicious activity:
     - For **Brute Force Attempt**, the query uses `event.code : "4625"` to detect failed login attempts.
     - For **Malicious Process Execution**, the query uses `process.args and process.command_line.text` to identify malicious process executions and specific commands.
-    - For **Suspicious File Execution**, the query uses `event.action:process_start and file.path:(/tmp/* or /dev/shm/*)` to detect process starts from uncommon directories.
+    - For **Uncommon Directory File Execution**, the query uses `event.action:process_start and file.path:(/tmp/* or /dev/shm/*)` to detect process execution from uncommon directories.
     - For **Data Exfiltration Attempts**, the query uses `event.type:data_transfer and destination.bytes > 500000000 and not (destination.ip:192.168.0.0/16 or destination.ip:10.0.0.0/8) ` to detect large data transfers to external destinations.
 
   - Apply any **additional filters** or **machine learning jobs** to refine the detection:
