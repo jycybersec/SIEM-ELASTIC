@@ -97,7 +97,7 @@ For each rule, we will:
 "action_type_id":".email",
 "params":{"to":["jycybersec@gmail.com"],
 "subject":"Malicious Process Execution",
-"message":"Rule {{context.rule.name}} generated {{state.signals_count}} alerts"}}]}}
+"message":"Rule {{context.rule.name}} generated {{state.signals_count}} alerts"}}]}
 ```
 ![image](https://github.com/user-attachments/assets/90536a70-303b-4635-866f-aaf12746ba2b)
 
