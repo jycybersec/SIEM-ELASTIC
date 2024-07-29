@@ -1,4 +1,4 @@
-# ELK (Elasticsearch, Logstash, and Kibana) SIEM Implementation
+# Elastic Cloud SIEM Implementation
 
 ## Agent Deployment 
 - #1 Kali Purple "purplesec"
